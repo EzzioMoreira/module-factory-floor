@@ -16,9 +16,3 @@ variable "az_count" {
 variable "environment" {
   description = "Name of environment to be created"
 }
-
-variable "default_tags" {
-  type = map(any)
-  default = {}
-  description = "Default variable the project"
-}
