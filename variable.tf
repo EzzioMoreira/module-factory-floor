@@ -5,7 +5,7 @@ variable "aws_region" {
 
 variable "vpc_cidr_block" {
   description = "Range of IPv4 address for the VPC."
-  default     = "172.17.0.0/16"
+  default     = "10.10.0.0/16"
 }
 
 variable "az_count" {
@@ -15,4 +15,10 @@ variable "az_count" {
 
 variable "environment" {
   description = "Name of environment to be created"
+}
+
+variable "default_tags" {
+  type = map(any)
+  default = {}
+  description = "Default variable the project"
 }

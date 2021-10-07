@@ -8,9 +8,7 @@ resource "aws_subnet" "private" {
   availability_zone = data.aws_availability_zones.available.names[count.index]
   vpc_id            = aws_vpc.main.id
 
-  tags = {
-    Name = "Private"
-  }
+  tags = var.default_tags
 }
 
 # Create var.az_count public subnets, each in a different AZ
@@ -21,9 +19,7 @@ resource "aws_subnet" "public" {
   vpc_id                  = aws_vpc.main.id
   map_public_ip_on_launch = true
 
-  tags = {
-    Name = "Public"
-  }
+  tags = var.default_tags
 }
 
 # Route the public subnet traffic through the IGW
@@ -38,17 +34,13 @@ resource "aws_eip" "gw" {
   count = var.az_count
   vpc   = true
 
-  tags = {
-    Environment = var.environment
-  }
+  tags = var.default_tags
 }
 
 resource "aws_internet_gateway" "gw" {
   vpc_id = aws_vpc.main.id
 
-  tags = {
-    Environment = var.environment
-  }
+  tags = var.default_tags
 }
 
 resource "aws_nat_gateway" "gw" {
@@ -56,9 +48,7 @@ resource "aws_nat_gateway" "gw" {
   subnet_id     = element(aws_subnet.public.*.id, count.index)
   allocation_id = element(aws_eip.gw.*.id, count.index)
 
-  tags = {
-    Environment = var.environment
-  }
+  tags = var.default_tags
 }
 
 # Create a new route table for the private subnets
@@ -72,9 +62,7 @@ resource "aws_route_table" "private" {
     nat_gateway_id = element(aws_nat_gateway.gw.*.id, count.index)
   }
 
-  tags = {
-    Environment = var.environment
-  }
+  tags = var.default_tags
 }
 
 # Explicitely associate the newly created route tables to the private subnets (so they don't default to the main route table)
