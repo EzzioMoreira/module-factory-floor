@@ -28,7 +28,7 @@ terraform {
 } 
 
 module "dev_cluster" {
-  source        = "git@github.com:EzzioMoreira/module-factory-floor.git?ref=master"
+  source        = "git@github.com:EzzioMoreira/module-factory-floor.git?ref=v1.0"
   environment   = "development"
   default_tags  = {
     Name        : "myapp",
