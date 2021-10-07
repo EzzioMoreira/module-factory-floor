@@ -11,10 +11,8 @@ That's the best way to argue about tech decisions and keep track of it.
 * Create a VPC
 * Create 3 subnets [Public, Private]
 * Create a couple of security groups.
-* Create an ALB.
 * Create a internet gateway
 * Route tables
-* Open ports 80/443 for the ALB security group.
 
 
 ## Usage
