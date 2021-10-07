@@ -8,7 +8,9 @@ resource "aws_subnet" "private" {
   availability_zone = data.aws_availability_zones.available.names[count.index]
   vpc_id            = aws_vpc.main.id
 
-  tags = var.default_tags
+  tags = {
+    Name = "Privada"
+  }
 }
 
 # Create var.az_count public subnets, each in a different AZ
@@ -19,7 +21,9 @@ resource "aws_subnet" "public" {
   vpc_id                  = aws_vpc.main.id
   map_public_ip_on_launch = true
 
-  tags = var.default_tags
+  tags = {
+    Name = "Public"
+  }
 }
 
 # Route the public subnet traffic through the IGW
