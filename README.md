@@ -1,4 +1,4 @@
-# This Terraform deploy:
+# This Module Terraform deploy:
 
 * Create a VPC
 * Create 2 private subnets
