@@ -7,5 +7,5 @@ output "ecs_cluster_name" {
 }
 
 output "subnet.private" {
-  value = aws_subnet.private[*].cidr_block
+  value = "${aws_subnet.private[*].cidr_block}"
 }
