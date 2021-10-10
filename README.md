@@ -1,19 +1,20 @@
-### This Module Terraform deploy:
+### This Terraform deploy:
 
 * Create a VPC
 * Create 2 subnets [Public, Private]
 * Create a internet gateway
 * Route tables
+* Cluster ECS
 
 ## Usage
 ##### Credential for AWS
-Create .env file to AWS credentials with access key and secret key.
+Create ```.env``` file to AWS credentials with access key and secret key.
 ```shell
 # AWS environment
-AWS_ACCESS_KEY_ID =
-AWS_SECRET_ACCESS_KEY =
+AWS_ACCESS_KEY_ID=your-access-key-here
+AWS_SECRET_ACCESS_KEY=your-secret-key-here
 ```
-#### Create terrafile.tf file with content and set your configurations:
+#### Create ```terrafile.tf``` file with content and set your configurations. If you prefer, change the variables name.
 ```terraform
 provider "aws" {
   region  = "us-east-2"
@@ -25,19 +26,12 @@ terraform {
     key    = "key-terraform-.tfstate"
     region = "us-east-2"
   }
-} 
+}
 
 module "dev_cluster" {
   source        = "git@github.com:EzzioMoreira/module-factory-floor.git?ref=v1.0"
   environment   = "development"
-  default_tags  = {
-    Name        : "myapp",
-    Team        : "IAC",
-    Application : "Rapadura",
-    Environment : "development",
-    Terraform   : "Yes",
-    Owner       : "Metal.Corp"
-  }
+  vpc_cidr_block = "10.1.0.0/16"
 }
 ```
 
