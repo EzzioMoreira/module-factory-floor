@@ -5,3 +5,7 @@ output "vpc_id" {
 output "ecs_cluster_name" {
   value = aws_ecs_cluster.main.name
 }
+
+output "subnet_private" {
+  value = aws_subnet.private[*].cidr_block
+}
