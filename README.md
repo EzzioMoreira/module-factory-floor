@@ -62,7 +62,7 @@ output "subnet_public" {
 |------|-------------|:----:|:-----:|:-----:|
 | aws\_region | The AWS region to create things in. | string | `"us-east-2"` | yes |
 | az\_count | The number of Availability Zones that we will deploy into | string | `"2"` | no |
-| environment | Name of environment to be created | string | n/a | yes |
+| environment | Name of environment to be created | string | "Not declared" | yes |
 | vpc\_cidr\_block | Range of IPv4 address for the VPC. | string | `"10.10.0.0/16"` | no |
 
 ### Terraform Outputs
